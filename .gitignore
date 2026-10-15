@@ -1,0 +1,15 @@
+bin/
+obj/
+app/
+Desktop/
+release/
+artifacts/
+packaging/msix-stage/
+packaging/msix-publish/
+*.user
+*.suo
+*.pfx
+*.cer
+*.msix
+*.appx
+*.zip

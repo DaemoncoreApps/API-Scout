@@ -1,0 +1,404 @@
+﻿<Window x:Class="ApiScout.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="DaemonCore / API Scout" Width="1440" Height="920" MinWidth="1180" MinHeight="780" Background="#0B0D10" FontFamily="Segoe UI" FontSize="14" WindowStyle="None" WindowStartupLocation="CenterScreen">
+  <WindowChrome.WindowChrome>
+    <WindowChrome CaptionHeight="38" ResizeBorderThickness="6" GlassFrameThickness="0" UseAeroCaptionButtons="False" />
+  </WindowChrome.WindowChrome>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="38" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="208" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Border Grid.ColumnSpan="2" Background="#0E1013" BorderBrush="#242830" BorderThickness="0,0,0,1">
+      <DockPanel>
+        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" WindowChrome.IsHitTestVisibleInChrome="True">
+          <Button Content="−" Width="46" Padding="0" Background="Transparent" BorderBrush="Transparent" Click="MinimizeWindow" ToolTip="Minimize" />
+          <Button Content="□" Width="46" Padding="0" Background="Transparent" BorderBrush="Transparent" Click="MaximizeWindow" ToolTip="Maximize or restore" />
+          <Button Content="×" Width="46" Padding="0" Background="Transparent" BorderBrush="Transparent" Click="CloseWindow" ToolTip="Close" />
+        </StackPanel>
+        <TextBlock Text="DAEMONCORE  /  API SCOUT" FontSize="10" Foreground="#737B88" Margin="18,0" VerticalAlignment="Center" />
+      </DockPanel>
+    </Border>
+    <Border Grid.Row="1" Background="#101216" BorderBrush="#262A31" BorderThickness="0,0,1,0">
+      <Grid Margin="18,26,18,20">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,0,0,32">
+          <Image Source="/ApiScout;component/Assets/daemoncore-logo.png" Height="62" Width="172" Stretch="Uniform" HorizontalAlignment="Left" ToolTip="DaemonCore" />
+          <TextBlock Text="API SCOUT" FontSize="10" Foreground="#737B88" Margin="4,9,0,0" />
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+          <TextBlock Text="WORKSPACE" FontSize="10" Foreground="#737B88" Margin="14,0,0,12" />
+          <RadioButton x:Name="NavDiscovery" Style="{StaticResource NavigationItem}" GroupName="Navigation" Tag="0" Checked="Navigate">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="⌕" FontSize="18" Foreground="#008CFF" Width="27" />
+              <TextBlock Text="Discovery" VerticalAlignment="Center" />
+            </StackPanel>
+          </RadioButton>
+          <RadioButton Style="{StaticResource NavigationItem}" GroupName="Navigation" Tag="1" Checked="Navigate">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="◇" FontSize="17" Foreground="#008CFF" Width="27" />
+              <TextBlock Text="Secret audit" VerticalAlignment="Center" />
+            </StackPanel>
+          </RadioButton>
+          <RadioButton Style="{StaticResource NavigationItem}" GroupName="Navigation" Tag="2" Checked="Navigate">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="↗" FontSize="17" Foreground="#008CFF" Width="27" />
+              <TextBlock Text="Key tester" VerticalAlignment="Center" />
+            </StackPanel>
+          </RadioButton>
+          <RadioButton Style="{StaticResource NavigationItem}" GroupName="Navigation" Tag="3" Checked="Navigate">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="≡" FontSize="17" Foreground="#008CFF" Width="27" />
+              <TextBlock Text="Scan report" VerticalAlignment="Center" />
+            </StackPanel>
+          </RadioButton>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Margin="10,0">
+          <Border Height="1" Background="#292D34" Margin="0,0,0,20" />
+          <StackPanel Orientation="Horizontal">
+            <Ellipse Fill="#80C5A4" Width="6" Height="6" Margin="0,0,8,0" />
+            <TextBlock Text="Local by design" FontSize="12" Foreground="#BBC3CF" />
+          </StackPanel>
+          <TextBlock Text="Your source stays yours." FontSize="11" Foreground="#737B88" Margin="14,7,0,0" />
+          <TextBlock Text="DESKTOP  /  0.1.0" FontSize="10" Foreground="#59616F" Margin="14,24,0,0" />
+        </StackPanel>
+      </Grid>
+    </Border>
+    <Grid Grid.Row="1" Grid.Column="1" Margin="28,24,28,18">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid Margin="0,0,0,24">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+          <TextBlock Text="DEVELOPER TOOLS  /  API SCOUT" FontSize="10" Foreground="#737B88" Margin="0,0,0,10" />
+          <TextBlock x:Name="PageTitle" Text="See what's in your source." FontSize="29" FontWeight="SemiBold" />
+          <TextBlock x:Name="PageSubtitle" Text="Discover endpoints and exposed credentials. Test on your terms." Foreground="#9299A5" FontSize="13" Margin="0,7,0,0" />
+        </StackPanel>
+        <Border Grid.Column="1" BorderBrush="#343943" BorderThickness="1" CornerRadius="5" Padding="12,7" VerticalAlignment="Top" Margin="20,9,0,0">
+          <TextBlock Text="LOCAL WORKSPACE" FontSize="10" Foreground="#BBC3CF" />
+        </Border>
+      </Grid>
+      <Border x:Name="ScanTargetCard" Grid.Row="1" Style="{StaticResource Card}" Padding="18,14" Margin="0,0,0,16">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <DockPanel Margin="0,0,0,10">
+            <TextBlock Text="SCAN TARGET" FontSize="10" FontWeight="SemiBold" Foreground="#9299A5" />
+            <TextBlock Text="URL, repository, folder, or file" FontSize="11" Foreground="#737B88" HorizontalAlignment="Right" />
+          </DockPanel>
+          <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid>
+              <TextBox x:Name="Target" FontFamily="Consolas" FontSize="12" ToolTip="Paste a URL, local repository, folder, source file, or OpenAPI JSON" />
+              <TextBlock Text="Paste a URL or choose a local source…" Foreground="#646E7D" Margin="13,0" VerticalAlignment="Center" FontSize="12" IsHitTestVisible="False">
+                <TextBlock.Style>
+                  <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                      <DataTrigger Binding="{Binding Text, ElementName=Target}" Value="">
+                        <Setter Property="Visibility" Value="Visible" />
+                      </DataTrigger>
+                    </Style.Triggers>
+                  </Style>
+                </TextBlock.Style>
+              </TextBlock>
+            </Grid>
+            <Button Grid.Column="1" Content="Folder" Click="PickFolder" Margin="8,0,0,0" />
+            <Button Grid.Column="2" Content="File" Click="PickFile" Margin="6,0,0,0" />
+            <Button Grid.Column="3" x:Name="ScanButton" Style="{StaticResource PrimaryButton}" Content="Scan workspace  ↗" Click="StartScan" Margin="12,0,0,0" />
+            <Button Grid.Column="4" x:Name="CancelScanButton" Content="Cancel" IsEnabled="False" Click="CancelScan" Margin="6,0,0,0" />
+          </Grid>
+        </Grid>
+      </Border>
+      <Grid x:Name="SummaryCards" Grid.Row="2" Margin="0,0,0,22">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource Card}" Padding="16,12" Margin="0,0,10,0">
+          <StackPanel Orientation="Horizontal">
+            <TextBlock x:Name="EndpointCount" Text="—" FontSize="24" FontWeight="SemiBold" Margin="0,0,12,0" />
+            <TextBlock Text="Endpoints" FontSize="12" Foreground="#9299A5" VerticalAlignment="Center" />
+          </StackPanel>
+        </Border>
+        <Border Grid.Column="1" Style="{StaticResource Card}" Padding="16,12" Margin="0,0,10,0">
+          <StackPanel Orientation="Horizontal">
+            <TextBlock x:Name="SecretCount" Text="—" FontSize="24" FontWeight="SemiBold" Foreground="#008CFF" Margin="0,0,12,0" />
+            <TextBlock Text="Key candidates" FontSize="12" Foreground="#9299A5" VerticalAlignment="Center" />
+          </StackPanel>
+        </Border>
+        <Border Grid.Column="2" Style="{StaticResource Card}" Padding="16,12" Margin="0,0,16,0">
+          <StackPanel Orientation="Horizontal">
+            <TextBlock x:Name="FileCount" Text="—" FontSize="24" FontWeight="SemiBold" Margin="0,0,12,0" />
+            <TextBlock Text="Files scanned" FontSize="12" Foreground="#9299A5" VerticalAlignment="Center" />
+          </StackPanel>
+        </Border>
+        <Button Grid.Column="3" x:Name="ExportButton" Content="Export report  ↓" IsEnabled="False" Click="Export" VerticalAlignment="Center" />
+      </Grid>
+      <TabControl x:Name="MainTabs" Grid.Row="3" BorderThickness="0" Background="Transparent">
+        <TabControl.Template>
+          <ControlTemplate TargetType="TabControl">
+            <ContentPresenter ContentSource="SelectedContent" />
+          </ControlTemplate>
+        </TabControl.Template>
+        <TabItem>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="5*" />
+              <ColumnDefinition Width="16" />
+              <ColumnDefinition Width="6*" />
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource Card}">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <DockPanel Margin="18,17,18,14">
+                  <TextBlock Text="Discovered endpoints" FontSize="15" FontWeight="SemiBold" />
+                  <TextBlock Text="SOURCE INDEX" FontSize="9" Foreground="#737B88" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                </DockPanel>
+                <Grid Grid.Row="1" Margin="16,0,16,16">
+                  <TextBox x:Name="Search" FontSize="12" ToolTip="Filter by method, route, file, or framework" TextChanged="FilterChanged" />
+                  <TextBlock Text="Filter endpoints…" FontSize="12" Foreground="#737B88" Margin="13,0" VerticalAlignment="Center" IsHitTestVisible="False">
+                    <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Visibility" Value="Collapsed"/><Style.Triggers><DataTrigger Binding="{Binding Text, ElementName=Search}" Value=""><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers></Style></TextBlock.Style>
+                  </TextBlock>
+                </Grid>
+                <Grid Grid.Row="2">
+                  <DataGrid x:Name="EndpointGrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" SelectionChanged="EndpointSelected">
+                    <DataGrid.Columns>
+                      <DataGridTemplateColumn Header="METHOD" Width="82">
+                        <DataGridTemplateColumn.CellTemplate>
+                          <DataTemplate>
+                            <Border Background="#1E302B" CornerRadius="4" Padding="6,3" HorizontalAlignment="Left">
+                              <TextBlock Text="{Binding Method}" Foreground="#95D6BA" FontSize="10" FontWeight="Bold" />
+                            </Border>
+                          </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                      </DataGridTemplateColumn>
+                      <DataGridTextColumn Header="ROUTE" Binding="{Binding Path}" Width="*" />
+                      <DataGridTextColumn Header="SOURCE" Binding="{Binding Kind}" Width="92" />
+                    </DataGrid.Columns>
+                  </DataGrid>
+                  <StackPanel x:Name="EndpointEmpty" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25">
+                    <Border Width="48" Height="48" Background="#20242B" CornerRadius="12" Margin="0,0,0,18">
+                      <TextBlock Text="⌕" FontSize="29" Foreground="#008CFF" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <TextBlock x:Name="EmptyTitle" Text="Start with your source." FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center" />
+                    <TextBlock x:Name="EmptyDescription" Text="Scan a workspace to map its API surface.&#xA;Every finding links back to a file and line." TextAlignment="Center" TextWrapping="Wrap" FontSize="12" Foreground="#9299A5" Margin="0,9,0,0" />
+                  </StackPanel>
+                </Grid>
+              </Grid>
+            </Border>
+            <Border Grid.Column="2" Style="{StaticResource Card}">
+              <Grid Margin="16">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <DockPanel Margin="0,0,0,16">
+                  <TextBlock Text="Request lab" FontSize="15" FontWeight="SemiBold" />
+                  <TextBlock Text="HTTP / HTTPS" FontSize="9" Foreground="#737B88" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                </DockPanel>
+                <Grid Grid.Row="1" Margin="0,0,0,10">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="*" />
+                  </Grid.ColumnDefinitions>
+                  <TextBlock Text="Base URL" FontSize="11" Foreground="#9299A5" VerticalAlignment="Center" />
+                  <TextBox Grid.Column="1" x:Name="BaseUrl" Text="http://localhost:3000" FontFamily="Consolas" FontSize="12" />
+                </Grid>
+                <Grid Grid.Row="2" Margin="0,0,0,10">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="94" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+                  <ComboBox x:Name="Method" FontSize="12" SelectedIndex="0">
+                    <ComboBoxItem Content="GET" />
+                    <ComboBoxItem Content="POST" />
+                    <ComboBoxItem Content="PUT" />
+                    <ComboBoxItem Content="PATCH" />
+                    <ComboBoxItem Content="DELETE" />
+                    <ComboBoxItem Content="HEAD" />
+                    <ComboBoxItem Content="OPTIONS" />
+                    <ComboBoxItem Content="TRACE" />
+                  </ComboBox>
+                  <TextBox x:Name="RequestPath" Grid.Column="1" Text="/" Margin="6,0" FontFamily="Consolas" FontSize="12" />
+                  <Button Grid.Column="2" x:Name="SendButton" Style="{StaticResource PrimaryButton}" Content="Send ↗" Click="Send" />
+                </Grid>
+                <TextBlock Grid.Row="3" x:Name="SourceInfo" Text="Choose an endpoint, or build a request manually." FontSize="11" TextTrimming="CharacterEllipsis" Foreground="#737B88" Margin="0,0,0,8" />
+                <TabControl Grid.Row="4" Background="#0C0F13" BorderBrush="#292D34">
+                  <TabItem Header="Response">
+                    <TextBox x:Name="ResponseBody" IsReadOnly="True" AcceptsReturn="True" Text="// No response yet.&#xA;// Send a request to inspect its status, headers, and body." FontFamily="Consolas" FontSize="12" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+                  </TabItem>
+                  <TabItem Header="Headers">
+                    <TextBox x:Name="RequestHeaders" AcceptsReturn="True" FontFamily="Consolas" FontSize="12" VerticalScrollBarVisibility="Auto" ToolTip="Name: value, one header per line. Kept in memory only." />
+                  </TabItem>
+                  <TabItem Header="Body">
+                    <TextBox x:Name="RequestBody" AcceptsReturn="True" FontFamily="Consolas" FontSize="12" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" ToolTip="JSON by default; override Content-Type in headers" />
+                  </TabItem>
+                  <TabItem Header="Evidence">
+                    <TextBox x:Name="Evidence" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" FontFamily="Consolas" FontSize="12" />
+                  </TabItem>
+                </TabControl>
+                <DockPanel Grid.Row="5" Margin="0,12,0,0">
+                  <Button x:Name="CancelRequestButton" DockPanel.Dock="Right" Content="Cancel" Padding="10,5" IsEnabled="False" Click="CancelRequest" />
+                  <TextBlock x:Name="ResponseStatus" Text="Ready · no request sent" FontSize="11" Foreground="#9299A5" VerticalAlignment="Center" TextWrapping="Wrap" Margin="0,0,8,0" />
+                </DockPanel>
+              </Grid>
+            </Border>
+          </Grid>
+        </TabItem>
+        <TabItem>
+          <Border Style="{StaticResource Card}" Padding="20">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                  <TextBlock Text="Credential findings" FontSize="18" FontWeight="SemiBold" />
+                  <TextBlock Text="Possible secrets in source and configuration files. Select a match to investigate." FontSize="12" Foreground="#9299A5" Margin="0,7,0,0" />
+                </StackPanel>
+                <Border Grid.Column="1" Background="#102C45" CornerRadius="5" Padding="12,7" VerticalAlignment="Top">
+                  <TextBlock Text="MASKED PREVIEWS" FontSize="10" Foreground="#63B9FF" />
+                </Border>
+              </Grid>
+              <DataGrid Grid.Row="1" x:Name="SecretsGrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" SelectionChanged="SecretSelected">
+                <DataGrid.Columns>
+                  <DataGridTextColumn Header="DETECTOR" Binding="{Binding Provider}" Width="190" />
+                  <DataGridTextColumn Header="MASKED VALUE" Binding="{Binding Preview}" Width="145" />
+                  <DataGridTextColumn Header="CONFIDENCE" Binding="{Binding Confidence}" Width="110" />
+                  <DataGridTextColumn Header="SOURCE FILE" Binding="{Binding File}" Width="*" />
+                  <DataGridTextColumn Header="ORIGIN" Binding="{Binding Origin}" Width="110" />
+                  <DataGridTextColumn Header="LINE" Binding="{Binding Line}" Width="60" />
+                </DataGrid.Columns>
+              </DataGrid>
+              <TextBox Grid.Row="2" x:Name="SecretDetails" IsReadOnly="True" TextWrapping="Wrap" FontSize="12" Margin="0,16,0,0" Text="No finding selected. A local match does not establish public exposure or key validity." />
+            </Grid>
+          </Border>
+        </TabItem>
+        <TabItem>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="370" />
+              <ColumnDefinition Width="18" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource Card}" Padding="22">
+              <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                  <TextBlock Text="One key. One request." FontSize="21" FontWeight="SemiBold" />
+                  <TextBlock Text="Test a credential against its provider.&#xA;Get the response, without the guesswork." FontSize="12" Foreground="#9299A5" Margin="0,9,0,24" />
+                  <TextBlock Text="Provider" Style="{StaticResource Label}" />
+                  <ComboBox x:Name="KeyProvider" SelectionChanged="KeyProviderChanged" Margin="0,0,0,16">
+                    <ComboBoxItem Content="GitHub" />
+                    <ComboBoxItem Content="Stripe" />
+                    <ComboBoxItem Content="Custom API" />
+                  </ComboBox>
+                  <TextBlock Text="Destination · GET" Style="{StaticResource Label}" />
+                  <TextBox x:Name="KeyUrl" FontFamily="Consolas" FontSize="11" Margin="0,0,0,16" />
+                  <TextBlock Text="Authentication" Style="{StaticResource Label}" />
+                  <ComboBox x:Name="KeyAuth" SelectedIndex="0" Margin="0,0,0,8" SelectionChanged="KeyAuthChanged">
+                    <ComboBoxItem Content="Bearer token" />
+                    <ComboBoxItem Content="Basic (key as username)" />
+                    <ComboBoxItem Content="Custom header" />
+                  </ComboBox>
+                  <TextBox x:Name="KeyHeader" Text="x-api-key" FontSize="12" ToolTip="Custom authentication header name" Margin="0,0,0,16" />
+                  <TextBlock Text="API key" Style="{StaticResource Label}" />
+                  <PasswordBox x:Name="KeyValue" FontSize="15" Margin="0,0,0,8" />
+                  <TextBlock Text="Memory only. Never included in reports." FontSize="10" Foreground="#737B88" Margin="0,0,0,20" />
+                  <Grid>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*" />
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="FireButton" Style="{StaticResource PrimaryButton}" Content="Fire request  ↗" Click="FireKey" />
+                    <Button Grid.Column="1" x:Name="CancelKeyButton" Content="Cancel" IsEnabled="False" Click="CancelKey" Margin="6,0,0,0" Padding="10,10" />
+                    <Button Grid.Column="2" Content="Clear" Click="ClearKey" Margin="6,0,0,0" Padding="10,10" />
+                  </Grid>
+                </StackPanel>
+              </ScrollViewer>
+            </Border>
+            <Border Grid.Column="2" Style="{StaticResource Card}" Padding="22">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <DockPanel Margin="0,0,0,20">
+                  <TextBlock Text="Validation result" FontSize="16" FontWeight="SemiBold" />
+                  <TextBlock Text="DIRECT TO PROVIDER" FontSize="9" Foreground="#737B88" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                </DockPanel>
+                <Border Grid.Row="1" Background="#1C2026" BorderBrush="#303640" BorderThickness="1" CornerRadius="6" Padding="16" Margin="0,0,0,16">
+                  <TextBlock x:Name="KeyStatus" Text="Ready when you are." TextWrapping="Wrap" FontSize="15" />
+                </Border>
+                <TextBox Grid.Row="2" x:Name="KeyResponse" IsReadOnly="True" AcceptsReturn="True" FontFamily="Consolas" FontSize="12" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+                <TextBlock Grid.Row="3" Text="Only test keys you own or are authorized to use. No redirects or automatic retries. A public endpoint's success does not prove the key is valid." FontSize="11" Foreground="#737B88" TextWrapping="Wrap" Margin="0,16,0,0" />
+              </Grid>
+            </Border>
+          </Grid>
+        </TabItem>
+        <TabItem>
+          <Border Style="{StaticResource Card}" Padding="22">
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <StackPanel Margin="0,0,0,20">
+                <TextBlock Text="Scan coverage &amp; diagnostics" FontSize="19" FontWeight="SemiBold" />
+                <TextBlock Text="What was inspected, what was skipped, and where static analysis has limits." FontSize="12" Foreground="#9299A5" Margin="0,8,0,0" />
+              </StackPanel>
+                    <TextBox Grid.Row="1" x:Name="ScanNotes" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" FontSize="13" Text="Paste a URL or choose a local repository/folder, then scan.&#xA;&#xA;URL scans inspect same-origin HTML, JavaScript, source maps, and linked assets without executing JavaScript.&#xA;&#xA;Git scans inspect the working tree and reachable history. Secret matches are candidates, not proof of public exposure.&#xA;&#xA;Repository code is never executed." />
+            </Grid>
+          </Border>
+        </TabItem>
+      </TabControl>
+      <DockPanel Grid.Row="4" Margin="0,16,0,0">
+        <TextBlock DockPanel.Dock="Right" Text="NO TELEMETRY" FontSize="9" Foreground="#59616F" />
+        <TextBlock x:Name="Summary" Text="Ready to scan. Your source never leaves this machine." FontSize="11" Foreground="#9299A5" TextTrimming="CharacterEllipsis" Margin="0,0,20,0" />
+      </DockPanel>
+    </Grid>
+  </Grid>
+</Window>
